@@ -4,6 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ÇOK AMAÇLI ARAÇ</title>
+
+<!-- Google AdSense Script -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2881601366779388"
+     crossorigin="anonymous"></script>
+
 <style>
     body {
         font-family: 'Segoe UI', sans-serif;
@@ -84,6 +89,19 @@
     <button onclick="saveNote()">Kaydet</button>
 </section>
 
+<!-- Google AdSense Reklam Alanı -->
+<section>
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-2881601366779388"
+         data-ad-slot="1234567890"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</section>
+
 <section>
     <h2>Hızlı Araçlar</h2>
     <div class="tools">
@@ -109,8 +127,7 @@
         </div>
     </div>
 </section>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2881601366779388"
-     crossorigin="anonymous"></script>
+
 <section class="daily-task">
     <h2>Günlük Mini Görev</h2>
     <p id="task"></p>
@@ -136,7 +153,7 @@
         document.getElementById('quote').innerText = quotes[Math.floor(Math.random()*quotes.length)];
     }
     showQuote();
-    setInterval(showQuote,10000); // 10 saniyede değişsin
+    setInterval(showQuote,10000);
 
     // Günlük Mini Görev
     const tasks = [
