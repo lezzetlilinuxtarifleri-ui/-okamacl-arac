@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ÇOK AMAÇLI ARAÇ</title>
+<style>
+    body {
+        font-family: 'Segoe UI', sans-serif;
+        margin: 0;
+        padding: 0;
+        animation: bgAnim 30s infinite alternate;
+        background: linear-gradient(135deg, #89f7fe, #66a6ff);
+        color: #333;
+    }
+    @keyframes bgAnim {
+        0% {background: linear-gradient(135deg, #89f7fe, #66a6ff);}
+        50% {background: linear-gradient(135deg, #fbc2eb, #a6c1ee);}
+        100% {background: linear-gradient(135deg, #89f7fe, #66a6ff);}
+    }
+    header {
+        text-align: center;
+        padding: 2rem;
+        background: rgba(255,255,255,0.3);
+        backdrop-filter: blur(10px);
+    }
+    h1 {margin:0;}
+    section {
+        max-width: 950px;
+        margin: 2rem auto;
+        padding: 1rem;
+        background: rgba(255,255,255,0.8);
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    textarea, input {
+        width: 100%;
+        padding: 0.5rem;
+        border-radius: 8px;
+        border: 1px solid #aaa;
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+    }
+    button {
+        padding: 0.5rem 1rem;
+        margin-top: 0.5rem;
+        border: none;
+        border-radius: 8px;
+        background-color: #66a6ff;
+        color: white;
+        cursor: pointer;
+        font-size: 1rem;
+    }
+    button:hover {background-color: #89f7fe;}
+    .tools {display: flex; flex-wrap: wrap; gap:1rem; justify-content: space-around;}
+    .tool {
+        flex: 1 1 250px;
+        background: #fff;
+        border-radius: 10px;
+        text-align: center;
+        padding: 1rem;
+        box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+    }
+    .fun-fact, .daily-task {
+        background: #fff;
+        border-radius: 10px;
+        padding: 1rem;
+        text-align: center;
+        margin: 1rem 0;
+        box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+    }
+</style>
+</head>
+<body>
+
+<header>
+    <h1>ÇOK AMAÇLI ARAÇ</h1>
+    <p id="quote">Günlük söz burada!</p>
+</header>
+
+<section>
+    <h2>Not Defteri</h2>
+    <textarea id="note" placeholder="Notlarını buraya yaz..."></textarea>
+    <button onclick="saveNote()">Kaydet</button>
+</section>
+
+<section>
+    <h2>Hızlı Araçlar</h2>
+    <div class="tools">
+        <div class="tool">
+            <h3>Hesap Makinesi</h3>
+            <input type="text" id="calc" placeholder="Örn: 5+3">
+            <button onclick="calculate()">Hesapla</button>
+            <p id="calcResult"></p>
+        </div>
+        <div class="tool">
+            <h3>Saat</h3>
+            <p id="clock"></p>
+        </div>
+        <div class="tool">
+            <h3>Rastgele Şifre</h3>
+            <button onclick="generatePassword()">Şifre Üret</button>
+            <p id="password"></p>
+        </div>
+        <div class="tool">
+            <h3>Renk Kod Üretici</h3>
+            <button onclick="generateColor()">Renk Üret</button>
+            <p id="color"></p>
+        </div>
+    </div>
+</section>
+
+<section class="daily-task">
+    <h2>Günlük Mini Görev</h2>
+    <p id="task"></p>
+</section>
+
+<section class="fun-fact">
+    <h2>Rastgele İlginç Bilgi</h2>
+    <p id="funfact"></p>
+</section>
+
+<script>
+    // Günlük sözler
+    const quotes = [
+        "Başarı küçük adımlarla gelir.",
+        "Her gün yeni bir fırsattır.",
+        "Hata yapmak öğrenmektir.",
+        "Pozitif kal ve devam et.",
+        "Hayallerinin peşinden git.",
+        "Kendine inan, yolun açık olsun.",
+        "Bugün bir adım daha at."
+    ];
+    function showQuote() {
+        document.getElementById('quote').innerText = quotes[Math.floor(Math.random()*quotes.length)];
+    }
+    showQuote();
+    setInterval(showQuote,10000); // 10 saniyede değişsin
+
+    // Günlük Mini Görev
+    const tasks = [
+        "5 dakika meditasyon yap",
+        "Bir arkadaşına teşekkür mesajı at",
+        "Bugün bir fotoğraf çek",
+        "1 sayfa kitap oku",
+        "Yürüyüş yap",
+        "Bir şarkı öğren veya dinle"
+    ];
+    function showTask() {
+        document.getElementById('task').innerText = tasks[Math.floor(Math.random()*tasks.length)];
+    }
+    showTask();
+
+    // Fun Fact
+    const funFacts = [
+        "Bir ahtapotun üç kalbi vardır.",
+        "Dünyadaki en hızlı hayvan çita.",
+        "Bal arıları 6 bacaklıdır.",
+        "Denizatı erkekleri doğum yapar.",
+        "İnsan beyninin %60’ı yağdan oluşur."
+    ];
+    function showFunFact() {
+        document.getElementById('funfact').innerText = funFacts[Math.floor(Math.random()*funFacts.length)];
+    }
+    showFunFact();
+
+    // Not Defteri
+    const noteArea = document.getElementById('note');
+    if(localStorage.getItem('myNote')) noteArea.value = localStorage.getItem('myNote');
+    function saveNote() {
+        localStorage.setItem('myNote', noteArea.value);
+        alert('Not kaydedildi!');
+    }
+
+    // Hesap Makinesi
+    function calculate() {
+        const input = document.getElementById('calc').value;
+        try {document.getElementById('calcResult').innerText='Sonuç: '+eval(input);}
+        catch {document.getElementById('calcResult').innerText='Geçersiz işlem!';}
+    }
+
+    // Saat
+    function updateClock() {
+        document.getElementById('clock').innerText = new Date().toLocaleTimeString();
+    }
+    setInterval(updateClock,1000);
+    updateClock();
+
+    // Şifre Üretici
+    function generatePassword(){
+        const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()";
+        let pass="";
+        for(let i=0;i<12;i++){pass+=chars[Math.floor(Math.random()*chars.length)];}
+        document.getElementById('password').innerText = pass;
+    }
+
+    // Renk Kod Üretici
+    function generateColor(){
+        let letters = "0123456789ABCDEF";
+        let color = "#";
+        for(let i=0;i<6;i++){color+=letters[Math.floor(Math.random()*16)];}
+        document.getElementById('color').innerText = color;
+    }
+</script>
+
+</body>
+</html>
